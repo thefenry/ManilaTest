@@ -1,0 +1,32 @@
+{
+  "siteName": {
+    "value": "manilatest"
+  },
+  "hostingPlanName": {
+    "value": "Default1"
+  },
+  "siteLocation": {
+    "value": "West US"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "serverName": {
+    "value": "manilatest-db"
+  },
+  "serverLocation": {
+    "value": "West US"
+  },
+  "administratorLogin": {
+    "value": "manila"
+  },
+  "administratorLoginPassword": {
+    "value": "P@ssw0rd"
+  },
+  "databaseName": {
+    "value": "manilatest_db"
+  }
+}
