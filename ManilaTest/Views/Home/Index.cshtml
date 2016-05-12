@@ -2,9 +2,83 @@
     ViewBag.Title = "Home Page";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="@Url.Content("/Scripts/linq.min.js")"></script>
+<link href="~/Content/BookContent.css" rel="stylesheet" />
 <h1>Test</h1>
-<p>Add code below that uses angular code. I want to see a set of boxes that contain the data returned from this api <br />
+<p>
+    Add code below that uses angular code. I want to see a set of boxes that contain the data returned from this api <br />
     <a href="http://manilatest.azurewebsites.net/api/contents">API Link</a>
     <br />
     Please try to style it with any framework you wish. Bonus points for using Less or SASS but <strong> do not stress</strong> about this since it is <strong>not required</strong> nor will it affect you.
 </p>
+<p>
+    Note: The Add, Update, Remove functionality is just clientside.
+    <br />
+    Framework used: Bootstrap, JQuery, AngularJS and Linq.js
+</p>
+<div ng-app="contentApp">
+    <div ng-controller="contentCtrl" class="container">
+        <div class="well">
+            <button class="btn btn-primary" ng-click="add()">Add Content</button>
+            <button class="btn btn-primary" ng-click="postContent()">Post Content</button>
+            <button class="btn btn-primary" ng-click="getInitalData()">Reload Initial Data</button>
+        </div>
+        <div class="loaderPanel">
+            <div class="loader" ng-show="isLoading"></div>
+        </div>
+        <div class="well" ng-repeat="c in contents" ng-hide="isLoading">
+            <h1>{{c.Title}}</h1>
+            <p>by: {{c.Author}}</p>
+            <button class="btn btn-primary" ng-click="edit($index)">Edit...</button>
+            <button class="btn btn-danger" ng-click="removeContent($index)">Remove...</button>
+        </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{mode}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="divForm">
+                            <div class="row-fluid">
+                                <div class="control-label span1">
+                                    <label>Title</label>
+                                </div>
+                                <div class="controls span1">
+                                    <input type="text" ng-model="Title" placeholder="title" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="control-label span1">
+                                    <label>Author</label>
+                                </div>
+                                <div class="controls span1">
+                                    <input type="text" ng-model="Author" placeholder="author" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="control-label span1">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="save()" class="btn btn-default" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="@Url.Content("/Scripts/Content/contentModule.js")"></script>
+<script src="@Url.Content(" /Scripts/Content/contentController.js")"></script>
+<script src="@Url.Content(" /Scripts/Content/ContentModel.js")"></script>
